@@ -35,7 +35,7 @@ To safely code the transition, we'll follow a test-driven development approach:
 - add a dependency to `spl-token-2022`
 - change tests to use `spl_token::id()` or `spl_token_2022::id()`, see that all
   tests fail with Token-2022
-- update on-chain program code to always use the instruction and deserializers from
+- update on-chain program code to always use the instruction and deserializes from
   `spl_token_2022`, make all tests pass
 
 Optionally, if an instruction uses more than one token mint, common to most DeFi,
