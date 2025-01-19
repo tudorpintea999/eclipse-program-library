@@ -152,7 +152,7 @@ When processing withdrawals, the order of priority goes:
 * reserve stake account
 * removing validator stake accounts entirely
 
-If there is preferred withdraw validator, and that validator stake account has
+If there is a preferred withdraw validator, and that validator stake account has
 any SOL, a user must withdraw from that account.
 
 If that account is empty, or the preferred withdraw validator stake account is
