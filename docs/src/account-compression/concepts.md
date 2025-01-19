@@ -33,7 +33,7 @@ If you change X5 to X5' then you will have to recompute the root hash in the fol
 - X1' = H(X2',X3)
 
 ### Concurrent leaf replacement
-We know that there can be multiple concurrent requests to write to the same state, however when the root changes while the first write is happenning the second write will generate an invalid root, in other words everytime a root is modified all modifications in progress will be invalid.
+We know that there can be multiple concurrent requests to write to the same state, however when the root changes while the first write is happening the second write will generate an invalid root, in other words everytime a root is modified all modifications in progress will be invalid.
 ```txt
           X1'              X1''
         /    \           /    \
@@ -43,7 +43,7 @@ We know that there can be multiple concurrent requests to write to the same stat
 ```
 In the above example let's say we try to modify `X5 -> X5'` and make another request to modify X6 -> X6''. For the first change we get root `X1'` computed using `X1' = H(H(X4,X5'),X3)`. For the second change we get root X1'' computed using `X1'' = H(H(X6'',X7),X2`). However `X1''` is not valid as `X1' != H(H(X6, X7), X2)` because the new root is actually `X1'`.
 
-The reason this happens is because the change in the first trees path actualy changes the proofs required by the second trees change. To circumvent this problem we maintain a changelog of updates that have been made to the tree, so when `X5 -> X5'` the second mutation can actually use X2' instead of X2 which would compute to the correct root.
+The reason this happens is because the change in the first trees path actually changes the proofs required by the second trees change. To circumvent this problem we maintain a changelog of updates that have been made to the tree, so when `X5 -> X5'` the second mutation can actually use X2' instead of X2 which would compute to the correct root.
 
 To swap the nodes when adding a new leaf in the second tree we do the following:
 - Take XOR of the leaf indices of the change log path and the new leaf in base 2
@@ -67,7 +67,7 @@ New proof for new leaf: [X7,X2']
 ```
 **Note:** We use XOR here because changelogs can get large as there can be many concurrent writes so using XOR is more efficient than a simple array search algorithm.
 
-**Note**: Solana imposes a transactions size restriction of 1232 bytes hence the program also provides the ability to cache the upper most part of the concurrent merkle tree called a "canopy" which is stored at the end of the account.
+**Note**: Solana imposes a transaction size restriction of 1232 bytes hence the program also provides the ability to cache the upper most part of the concurrent merkle tree called a "canopy" which is stored at the end of the account.
 
 
 
