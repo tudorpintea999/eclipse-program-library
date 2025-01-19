@@ -60,7 +60,7 @@ This section describes the life cycle of a feature proposal.
 The first step is to conceive of the new feature and realize it in the
 Solana code base, working with the core Solana developers at https://github.com/solana-labs/solana.
 
-During the implementation, a *feature id* will be required to identity the new
+During the implementation, a *feature id* will be required to identify the new
 feature in the code base to avoid the new functionality until its activation.
 The *feature id* for a feature proposal is derived by running the following
 commands.
