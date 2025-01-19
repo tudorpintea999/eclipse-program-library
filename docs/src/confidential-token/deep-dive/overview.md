@@ -10,10 +10,10 @@ guide.
 
 We note that this overview exists mainly to provide the design intuition behind
 the underlying cryptography that is used in the confidential extension. Some of
-the description of the protocol in the overview could differ from the actual
+the descriptions of the protocol in the overview could differ from the actual
 implementation. We refer to the subsequent subsections, the [source
 code](https://github.com/solana-labs/solana-program-library), and the
-documentations within for the precise details of the underlying cryptography.
+documentation within for the precise details of the underlying cryptography.
 
 ## Tokens with Encryption and Proofs
 
@@ -238,7 +238,7 @@ zero-knowledge proofs.
   `lower_bound <= x < upper_bound`.
 
   In the confidential extension, we require that a transfer instruction includes
-  a range proof that certify the following:
+  a range proof that certifies the following:
 
   - The proof should certify that there are enough funds in the source account.
     Specifically, let `ct_source` be the encrypted balance of a source account
@@ -331,7 +331,7 @@ This allows any entity with a corresponding auditor secret key to be able to
 decrypt any transfer amounts for a particular mint.
 
 Similarly to how a dishonest sender can encrypt inconsistent transfer amounts
-under the source and destination keys, it can encrypt inconsistent transfer
+under the source and destination keys, it can encrypt the inconsistent transfer
 amount under the auditor encryption key. If the auditor encryption key is not
 `None` in the mint, then the token program requires that a transfer amount in a
 transfer instruction contain additional zero-knowledge proof that certifies that
@@ -343,7 +343,7 @@ One way an attacker can disrupt the use of a confidential extension account is
 by using _front-running_. Zero-knowledge proofs are verified with respect to the
 encrypted balance of an account. Suppose that a user Alice generates a proof
 with respect to her current encrypted account balance. If another user Bob
-transfers some tokesn to Alice, and Bob's transaction is processed first, then
+transfers some tokens to Alice, and Bob's transaction is processed first, then
 Alice's transaction will be rejected by the Token program as the proof will not
 verify with respect to the newly updated account state.
 
@@ -435,7 +435,7 @@ Account {
 A well-known limitation of using linearly-homomorphic ElGamal encryption is the
 inefficiency of decryption. Even with a proper secret key, in order to recover
 the originally encrypted value, one must solve a computational problem called
-the _discrete logarithm_, which requires an expoential time to solve. In the
+the _discrete logarithm_, which requires an exponential time to solve. In the
 confidential extension program, we address this issue in the following two ways:
 
 - Transfer amounts are restricted to 48-bit numbers.
