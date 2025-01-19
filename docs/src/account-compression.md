@@ -15,11 +15,11 @@ This on-chain program provides an interface for composing smart-contracts to cre
 
 The account compression program is currently being used for the [Metaplex Bubblegum Program](https://github.com/metaplex-foundation/metaplex-program-library/blob/master/bubblegum/)
 
-To solve the problem of the high on-chain storage cost per unit of these assets, we need to store a compressed fingrprint on-chain that can verify the off-chain asset data. To do this we need
+To solve the problem of the high on-chain storage cost per unit of these assets, we need to store a compressed fingerprint on-chain that can verify the off-chain asset data. To do this we need
   - Concurrent Merkle Trees
     - The concurrent merkle tress allows us to compress all the data into a single root hash stored on-chain while allowing concurrent replacements and appends to the data.
   - Program indexer
-    - The indexer is incharge of indexing the latest writes to the tree on chain so you know which nodes have been replaced and which have been appended to so you can avoid proof collision
+    - The indexer is in charge of indexing the latest writes to the tree on chain so you know which nodes have been replaced and which have been appended to so you can avoid proof collision
   - Off-chain Database
     - The db stores the actual asset data on chain as we are only storing the merkle root on chain and we need to be able to verify the data on chain.
 
