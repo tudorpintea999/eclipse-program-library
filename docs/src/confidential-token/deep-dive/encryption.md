@@ -191,7 +191,7 @@ in the account and `encrypted_amount_hi_receiver` to `pending_balance_hi`.
 
 One natural way to divide the 64-bit pending balance and transfer amount in the
 structures above is to evenly split the number as low and high 32-bit numbers.
-Then since the amounts that are encrypted in each ciphertexts are 32-bit
+Then since the amounts that are encrypted in each ciphertext are 32-bit
 numbers, each of their decryption can be done efficiently.
 
 The problem with this approach is that the 32-bit number that is encrypted as
@@ -277,7 +277,7 @@ Consider the case where `maximum_pending_balance_credit_counter` is set to
   The decryption of a large 48-bit number is slow. However, for most
   applications, transfers of very high transaction amounts are relatively more
   rare. For an account to hold a pending balance of large 48-bit numbers, it
-  must receive a large number of high transactions amounts. Clients that
+  must receive a large number of high transaction amounts. Clients that
   maintain accounts with high token balances can frequently submit the
   `ApplyPendingBalance` instruction to flush out the pending balance into the
   available balance to prevent `pending_balance_hi` from encrypting a number
